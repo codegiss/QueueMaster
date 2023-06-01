@@ -116,6 +116,17 @@ float desenfileirar(Fila *f)
     return ret;
 }
 
+void senhasAtendidas(FilaGuiche temp, int id, int senha) {
+	// percorrer a fila até cont = id
+	int cont = 0;
+	
+	while(cont<=id) {
+		if(cont==id) {
+			// gravar senha na fila
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
     Fila *senhasGeradas;
@@ -123,6 +134,7 @@ int main(int argc, char **argv)
 
     FilaGuiche *guiches;
     guiches = initGuiche();
+    
 
     int op = -1;
     int idAtendimento;
@@ -136,6 +148,7 @@ int main(int argc, char **argv)
         do
         {
             cout << "Senhas aguardando atendimento: " << (ultimaGerada - qtdAtendidas) << endl;
+            cout << "Guiches abertos: " << ultimoIdGuiche << endl;
             cout << "Escolha uma opcao:" << endl;
             cout << "0. Sair" << endl;
             cout << "1. Gerar senha" << endl;
@@ -162,8 +175,6 @@ int main(int argc, char **argv)
                 cout << endl;
                 break;
             case 2:
-                // adicionar numa lista um struct com id do guiche
-                // e fila pra armazenar as senhas que atendeu
                 enfileirarGuiches(guiches, ultimoIdGuiche);
                 ultimoIdGuiche++;
                 cout << "Guiche gerado com id: " << ultimoIdGuiche << endl;
@@ -175,7 +186,6 @@ int main(int argc, char **argv)
                     cout << endl;
                 }
                 else {
-                    // solicitar id do guiche que vai atender
                     cout << "Digite o id do guiche: ";
                     cin >> idAtendimento;
 
@@ -195,6 +205,8 @@ int main(int argc, char **argv)
                         {
                             // enfileirar a senha atendida na fila desse guiche
                             ultimaAtendida = desenfileirar(senhasGeradas);
+                            senhasAtendidas(guiches, idAtendimento, ultimaAtendida);
+                            
                             cout << "Senha atendida: " << ultimaAtendida << endl;
                             qtdAtendidas++;
                             cout << endl;
@@ -209,7 +221,7 @@ int main(int argc, char **argv)
 
                 if (idAtendimento > ultimoIdGuiche)
                 {
-
+                	
                 }
                 else {
                     cout << "O id digitado nao pertence a nenhum guiche." << endl;
